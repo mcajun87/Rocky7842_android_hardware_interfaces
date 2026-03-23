@@ -1477,8 +1477,11 @@ ndk::ScopedAStatus WifiChip::handleChipConfiguration(
                      version_info.first.firmwareDescription.c_str());
         property_set("vendor.wlan.driver.version", version_info.first.driverDescription.c_str());
     }
+
+#ifndef WIFI_FORCE_DISABLE_DYNAMIC_IFACE_COMBINATION
     // Get the driver supported interface combination.
     retrieveDynamicIfaceCombination();
+#endif
 
     return ndk::ScopedAStatus::ok();
 }
